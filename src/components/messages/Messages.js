@@ -51,7 +51,9 @@ class Messages extends React.Component {
       });
     });
   };
-
+  handleLikes = (e) => {
+    e.preventDefault();
+  };
   handleChange = (event) => {
     let data = { ...this.state };
 
@@ -66,24 +68,25 @@ class Messages extends React.Component {
     if (this.state.messages) {
       display = this.state.messages.map((value) => {
         return (
-          <List>
+          <List class="rating">
             <ListItem key={value.id.toString()}>
               {value.text}
 
-              <IconButton key={value.id} id={value.id.toString()}>
-                <ThumbUpIcon />
-              </IconButton>
-              <IconButton key={value.id}>
-                <ThumbDown />
-              </IconButton>
-              <DeleteIcon onClick={() => this.handleDelete(value.id)}></DeleteIcon>
-
               <IconButton
+                class="like grow"
                 key={value.id}
                 id={value.id.toString()}
-                // onClick={this.handleDelete}
-                label="delete"
-              ></IconButton>
+                aria-hidden="true"
+              >
+                <ThumbUpIcon />
+              </IconButton>
+              <IconButton div class="dislike grow" key={value.id}>
+                <ThumbDown />
+              </IconButton>
+
+              <DeleteIcon onClick={() => this.handleDelete(value.id)}></DeleteIcon>
+
+              <IconButton key={value.id} id={value.id.toString()} label="delete"></IconButton>
             </ListItem>
           </List>
         );
