@@ -3,3 +3,8 @@
   flex-direction: column;
   max-width: 20em;
 }
+.LoginForm {
+  max-width: 400px;
+  margin: auto;
+  padding: 5em;
+}

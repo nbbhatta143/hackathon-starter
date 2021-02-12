@@ -4,24 +4,20 @@ import React from "react";
 import { withAsyncAction } from "../../redux/HOCs";
 import { Button, IconButton, List, ListItem } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
-
+import "./Message.css";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 
 class Messages extends React.Component {
   constructor(props) {
     super(props);
-
+    // this.handleDelete = this.handleDelete.bind(this)
     this.state = {
       messages: [],
       message: "",
       count: 0,
       image: "",
     };
-  }
-
-  componentDidMount() {
-    this.fetchMessages();
   }
 
   fetchMessages = () => {
@@ -33,7 +29,9 @@ class Messages extends React.Component {
       });
     });
   };
-
+  componentDidMount = () => {
+    this.fetchMessages();
+  };
   newMessageHandler = () => {
     let text = this.state.message;
     this.props.createMessage(text).then(() => {
@@ -44,10 +42,13 @@ class Messages extends React.Component {
     });
   };
 
-  handleDelete = (e) => {
-    let messageId = e.target.id;
+  handleDelete = (messageId) => {
+    // let messageId = e.target.id;
     this.props.deleteMessage(messageId).then(() => {
       this.fetchMessages();
+      this.setState({
+        message: "",
+      });
     });
   };
 
@@ -61,25 +62,50 @@ class Messages extends React.Component {
 
   render() {
     let display = <div>No Messages Found</div>;
+
     if (this.state.messages) {
       display = this.state.messages.map((value) => {
         return (
-          <div>
-            <li key={value.id}>{value.text}</li>
-            <button id={value.id} onClick={this.handleDelete}>
-              Delete
-            </button>
-          </div>
+          <List>
+            <ListItem key={value.id.toString()}>
+              {value.text}
+              <IconButton key={value.id} id={value.id.toString()}>
+                <ThumbUpIcon />
+              </IconButton>
+              <IconButton
+                key={value.id}
+                id={value.id.toString()}
+                // onClick={this.handleDelete}
+                label="delete"
+              >
+                <DeleteIcon onClick={() => this.handleDelete(value.id)}></DeleteIcon>
+              </IconButton>
+            </ListItem>
+          </List>
         );
       });
     }
 
     return (
       <div className="Messages">
-        <div className="ListMessage">{display}</div>
+        <div className="ListMessage">
+          {display}
+          {console.log(display.id)}
+        </div>
+
         <div className="NewMessage">
           <input name="message" onChange={this.handleChange} value={this.state.message} />
-          <button onClick={this.newMessageHandler}> Send Message </button>
+          <Button
+            component="button"
+            variant="contained"
+            color="primary"
+            onClick={this.newMessageHandler}
+          >
+            {" "}
+            Send Message{" "}
+          </Button>
+
+          {/* <Button onClick={this.fetchMessages}>Show Messages</Button> */}
         </div>
       </div>
     );
