@@ -32,7 +32,13 @@ class LoginForm extends React.Component {
           <Input type="text" name="username" autoFocus required onChange={this.handleChange} />
           <label htmlFor="password">Password</label>
           <Input type="password" name="password" required onChange={this.handleChange} />
-          <Button type="submit" disabled={loading}>
+          <Button 
+          type="submit" 
+          disabled={loading}
+          variant="contained"
+          size="large"
+          color="primary"
+          >
             Login
           </Button>
         </form>
