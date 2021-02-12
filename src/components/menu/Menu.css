@@ -1,8 +1,11 @@
 .Menu {
-  background-color: lightskyblue;
+  max-width: 800px;
+  max-height: 50px;
+  background-color: rgb(83, 161, 250);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: auto;
   padding: 0 1em;
   border-radius: 1em;
 }
@@ -15,6 +18,6 @@
 #menu-links a {
   padding-right: 0.5em;
   color: darkblue;
-  text-decoration: underline;
+  text-decoration: none;
   cursor: pointer;
 }
