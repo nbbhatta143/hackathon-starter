@@ -1,5 +1,32 @@
 .Messages {
   max-width: 400px;
   margin: auto;
-  padding: 2em;
+}
+.rating {
+  display: inline-block;
+  width: 100%;
+  margin-top: 0px;
+  text-align: center;
+}
+
+.like,
+.dislike {
+  display: inline-block;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.dislike:hover,
+.like:hover {
+  color: #2ebdd1;
+  transition: all 0.2s ease-in-out;
+  transform: scale(1.1);
+}
+
+.active {
+  color: #2ebdd1;
+}
+
+.Menu {
+  width: 80vw;
 }
