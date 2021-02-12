@@ -5,8 +5,8 @@ import { withAsyncAction } from "../../redux/HOCs";
 import { Button, IconButton, List, ListItem } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import "./Message.css";
-import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
+import { ThumbDown } from "@material-ui/icons";
 
 class Messages extends React.Component {
   constructor(props) {
@@ -69,17 +69,21 @@ class Messages extends React.Component {
           <List>
             <ListItem key={value.id.toString()}>
               {value.text}
+
               <IconButton key={value.id} id={value.id.toString()}>
                 <ThumbUpIcon />
               </IconButton>
+              <IconButton key={value.id}>
+                <ThumbDown />
+              </IconButton>
+              <DeleteIcon onClick={() => this.handleDelete(value.id)}></DeleteIcon>
+
               <IconButton
                 key={value.id}
                 id={value.id.toString()}
                 // onClick={this.handleDelete}
                 label="delete"
-              >
-                <DeleteIcon onClick={() => this.handleDelete(value.id)}></DeleteIcon>
-              </IconButton>
+              ></IconButton>
             </ListItem>
           </List>
         );

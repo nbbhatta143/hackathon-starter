@@ -1,6 +1,7 @@
 .Menu {
   max-width: 800px;
-  background-color: lightskyblue;
+  max-height: 50px;
+  background-color: rgb(83, 161, 250);
   display: flex;
   justify-content: space-between;
   align-items: center;

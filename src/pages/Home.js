@@ -8,7 +8,7 @@ class Home extends React.Component {
     return (
       <div className="Home">
         <Menu />
-        <h2>Welcome to Kwitter</h2>
+        <h2>Welcome to Chat Hub</h2>
         <LoginForm />
       </div>
     );
