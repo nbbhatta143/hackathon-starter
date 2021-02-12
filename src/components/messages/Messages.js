@@ -69,6 +69,12 @@ class Messages extends React.Component {
 						<ListItem key={value.id.toString()}>{value.text}
 						<IconButton
 							key={value.id}
+							id={value.id.toString()}
+						>
+						<ThumbUpIcon />
+						</IconButton>
+						<IconButton
+							key={value.id}
 							
 							
 							id={value.id.toString()}
