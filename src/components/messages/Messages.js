@@ -2,11 +2,13 @@
 
 import React from "react";
 import { withAsyncAction } from "../../redux/HOCs";
-import { Button, IconButton, List, ListItem } from "@material-ui/core";
+import { Button, IconButton, List, ListItem, Input } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import "./Message.css";
-import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
+import { ThumbDown } from "@material-ui/icons";
+
+
 
 class Messages extends React.Component {
   constructor(props) {
@@ -51,7 +53,9 @@ class Messages extends React.Component {
       });
     });
   };
-
+  handleLikes = (e) => {
+    e.preventDefault();
+  };
   handleChange = (event) => {
     let data = { ...this.state };
 
@@ -66,20 +70,25 @@ class Messages extends React.Component {
     if (this.state.messages) {
       display = this.state.messages.map((value) => {
         return (
-          <List>
+          <List class="rating">
             <ListItem key={value.id.toString()}>
               {value.text}
-              <IconButton key={value.id} id={value.id.toString()}>
-                <ThumbUpIcon />
-              </IconButton>
+
               <IconButton
+                class="like grow"
                 key={value.id}
                 id={value.id.toString()}
-                // onClick={this.handleDelete}
-                label="delete"
+                aria-hidden="true"
               >
-                <DeleteIcon onClick={() => this.handleDelete(value.id)}></DeleteIcon>
+                <ThumbUpIcon />
               </IconButton>
+              <IconButton div class="dislike grow" key={value.id}>
+                <ThumbDown />
+              </IconButton>
+
+              <DeleteIcon onClick={() => this.handleDelete(value.id)}></DeleteIcon>
+
+              <IconButton key={value.id} id={value.id.toString()} label="delete"></IconButton>
             </ListItem>
           </List>
         );
@@ -94,7 +103,7 @@ class Messages extends React.Component {
         </div>
 
         <div className="NewMessage">
-          <input name="message" onChange={this.handleChange} value={this.state.message} />
+          <Input placeholder="Enter Message" name="message" onChange={this.handleChange} value={this.state.message} />
           <Button
             component="button"
             variant="contained"
