@@ -5,7 +5,6 @@ import { withAsyncAction } from "../../redux/HOCs";
 import { Button, IconButton, List, ListItem } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import "./Message.css";
-import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import { ThumbDown } from "@material-ui/icons";
 
