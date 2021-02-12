@@ -9,83 +9,6 @@ import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 
 class Messages extends React.Component {
-<<<<<<< HEAD
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      messages: [],
-      message: "",
-      count: 0,
-      image: "",
-    };
-  }
-
-  componentDidMount() {
-    this.fetchMessages();
-  }
-
-  fetchMessages = () => {
-    this.props.getMessage(this.props.username).then((res) => {
-      console.log(res.payload);
-      this.setState({
-        messages: res.payload.messages,
-        count: res.payload.count,
-      });
-    });
-  };
-
-  newMessageHandler = () => {
-    let text = this.state.message;
-    this.props.createMessage(text).then(() => {
-      this.fetchMessages();
-      this.setState({
-        message: "",
-      });
-    });
-  };
-
-  handleDelete = (e) => {
-    let messageId = e.target.id;
-    this.props.deleteMessage(messageId).then(() => {
-      this.fetchMessages();
-    });
-  };
-
-  handleChange = (event) => {
-    let data = { ...this.state };
-
-    data[event.target.name] = event.target.value;
-
-    this.setState(data);
-  };
-
-  render() {
-    let display = <div>No Messages Found</div>;
-    if (this.state.messages) {
-      display = this.state.messages.map((value) => {
-        return (
-          <div>
-            <li key={value.id}>{value.text}</li>
-            <button id={value.id} onClick={this.handleDelete}>
-              Delete
-            </button>
-          </div>
-        );
-      });
-    }
-
-    return (
-      <div className="Messages">
-        <div className="ListMessage">{display}</div>
-        <div className="NewMessage">
-          <input name="message" onChange={this.handleChange} value={this.state.message} />
-          <button onClick={this.newMessageHandler}> Send Message </button>
-        </div>
-      </div>
-    );
-  }
-=======
 	constructor(props) {
 		super(props);
 		// this.handleDelete = this.handleDelete.bind(this)
@@ -187,7 +110,6 @@ class Messages extends React.Component {
 			</div>
 		);
 	}
->>>>>>> 14a7d3a2064fa1b0801bf0d577027f7c6869fae8
 }
 
 export default withAsyncAction("profile", "all")(Messages);
