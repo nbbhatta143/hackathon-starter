@@ -1,13 +1,11 @@
 .Messages {
   max-width: 400px;
   margin: auto;
-  padding: 2em;
 }
 .rating {
   display: inline-block;
   width: 100%;
-  margin-top: 40px;
-  padding-top: 40px;
+  margin-top: 0px;
   text-align: center;
 }
 
@@ -15,7 +13,7 @@
 .dislike {
   display: inline-block;
   cursor: pointer;
-  margin: 10px;
+  margin: 5px;
 }
 
 .dislike:hover,
