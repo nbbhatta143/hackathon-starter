@@ -28,10 +28,10 @@ class LoginForm extends React.Component {
     return (
       <div className="LoginForm">
         <form id="login-form" onSubmit={this.handleLogin}>
-          <label htmlFor="username">Username</label>
-          <Input type="text" name="username" autoFocus required onChange={this.handleChange} />
-          <label htmlFor="password">Password</label>
-          <Input type="password" name="password" required onChange={this.handleChange} />
+          <label htmlFor="username"></label>
+          <Input placeholder="User Name" type="text" name="username" autoFocus required onChange={this.handleChange} />
+          <label htmlFor="password"></label>
+          <Input placeholder="Password" type="password" name="password" required onChange={this.handleChange} />
           <Button 
           type="submit" 
           disabled={loading}
