@@ -38,8 +38,9 @@ class SignUpForm extends React.Component {
         return (
             <div className="signUpForm">
                 <form id="signUp-form" onSubmit={this.handlesignUp}>
-                    <label htmlFor="username">Username</label>
+                    <label htmlFor="username"></label>
                     <Input
+                        placeholder="User Name"
                         type="text"
                         name="username"
                         autoFocus
@@ -47,16 +48,18 @@ class SignUpForm extends React.Component {
                         onChange={this.handleChange}
                         value={this.state.username}
                     />
-                    <label htmlFor="password">Password</label>
+                    <label htmlFor="password"></label>
                     <Input
+                        placeholder="Password"
                         type="password"
                         name="password"
                         required
                         onChange={this.handleChange}
                         value={this.state.password}
                     />
-                    <label htmlFor="displayName">Dispaly Name</label>
+                    <label htmlFor="displayName"></label>
                     <Input
+                        placeholder="Your Name"
                         type="displayName"
                         name="displayName"
                         autoFocus
