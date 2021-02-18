@@ -13,19 +13,19 @@ import { ThumbDown } from "@material-ui/icons";
 class Messages extends React.Component {
 	constructor(props) {
 		super(props);
-		// this.handleDelete = this.handleDelete.bind(this)
 		this.state = {
 			messages: [],
 			message: "",
 			count: 0,
 			image: "",
 		};
-		
 	}
 	
 	componentDidMount() {
+
         	this.fetchMessages();
 	}
+
 
 	fetchMessages = () => {
 		this.props.getMessage(this.props.username).then((res) => {
@@ -105,12 +105,14 @@ class Messages extends React.Component {
 				</div>
 
 				<div className="NewMessage">
+
 					<Input placeholder="Type Message Here" name="message" onChange={this.handleChange} value={this.state.message} />
+
 					<Button component="button" variant="contained" color="primary" onClick={this.newMessageHandler}>
 						{" "}
 						Send Message{" "}
 					</Button>
-
+					{/*This was here because componentDidMount was missing and messages were not showing up*/}	
 					{/* <Button onClick={this.fetchMessages}>Show Messages</Button> */}
 				</div>
 			</div>
