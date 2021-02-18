@@ -11,114 +11,111 @@ import { ThumbDown } from "@material-ui/icons";
 
 
 class Messages extends React.Component {
-  constructor(props) {
-    super(props);
-    // this.handleDelete = this.handleDelete.bind(this)
-    this.state = {
-      messages: [],
-      message: "",
-      count: 0,
-      image: "",
-    };
-  }
+	constructor(props) {
+		super(props);
+		// this.handleDelete = this.handleDelete.bind(this)
+		this.state = {
+			messages: [],
+			message: "",
+			count: 0,
+			image: "",
+		};
+		
+	}
+	
+	componentDidMount() {
+        	this.fetchMessages();
+	}
 
-  fetchMessages = () => {
-    this.props.getMessage(this.props.username).then((res) => {
-      console.log(res.payload);
-      this.setState({
-        messages: res.payload.messages,
-        count: res.payload.count,
-      });
-    });
-  };
-  componentDidMount = () => {
-    this.fetchMessages();
-  };
-  newMessageHandler = () => {
-    let text = this.state.message;
-    this.props.createMessage(text).then(() => {
-      this.fetchMessages();
-      this.setState({
-        message: "",
-      });
-    });
-  };
+	fetchMessages = () => {
+		this.props.getMessage(this.props.username).then((res) => {
+			console.log(res.payload);
+			this.setState({
+				messages: res.payload.messages,
+				count: res.payload.count,
+			});
+		});
+	};
 
-  handleDelete = (messageId) => {
-    // let messageId = e.target.id;
-    this.props.deleteMessage(messageId).then(() => {
-      this.fetchMessages();
-      this.setState({
-        message: "",
-      });
-    });
-  };
-  handleLikes = (e) => {
-    e.preventDefault();
-  };
-  handleChange = (event) => {
-    let data = { ...this.state };
+	newMessageHandler = () => {
+		let text = this.state.message;
+		this.props.createMessage(text).then(() => {
+			this.fetchMessages();
+			this.setState({
+				message: "",
+			});
+		});
+	};
 
-    data[event.target.name] = event.target.value;
+	handleDelete = (messageId) => {
+		// let messageId = e.target.id;
+		this.props.deleteMessage(messageId).then(() => {
+			this.fetchMessages();
+			this.setState({
+				message: "",
+			})
+		});
+	};
 
-    this.setState(data);
-  };
+	handleChange = (event) => {
+		let data = { ...this.state };
 
-  render() {
-    let display = <div>No Messages Found</div>;
+		data[event.target.name] = event.target.value;
 
-    if (this.state.messages) {
-      display = this.state.messages.map((value) => {
-        return (
-          <List class="rating">
-            <ListItem key={value.id.toString()}>
-              {value.text}
+		this.setState(data);
+	};
 
-              <IconButton
-                class="like grow"
-                key={value.id}
-                id={value.id.toString()}
-                aria-hidden="true"
-              >
-                <ThumbUpIcon />
-              </IconButton>
-              <IconButton div class="dislike grow" key={value.id}>
-                <ThumbDown />
-              </IconButton>
+	render() {
+		let display = <div>No Messages Found</div>;
 
-              <DeleteIcon onClick={() => this.handleDelete(value.id)}></DeleteIcon>
+		if (this.state.messages) {
+			display = this.state.messages.map((value) => {
+				return (
+					<List>
+						<ListItem key={value.id.toString()}>{value.text}
+						<IconButton
+							key={value.id}
+							id={value.id.toString()}
+						>
+						<ThumbUpIcon />
+						</IconButton>
+						<IconButton
+							key={value.id}
+							
+							
+							id={value.id.toString()}
+							// onClick={this.handleDelete}
+							label="delete"
+						> 
+						<DeleteIcon onClick={()=>this.handleDelete(value.id)}></DeleteIcon>
+						</IconButton>
+						</ListItem>
+					</List>
+				);
+			});
+		}
 
-              <IconButton key={value.id} id={value.id.toString()} label="delete"></IconButton>
-            </ListItem>
-          </List>
-        );
-      });
-    }
+		return (
+			<div className="Messages">
+				<div className="ListMessage">
+					{display}
+					{console.log(display.id)}
 
-    return (
-      <div className="Messages">
-        <div className="ListMessage">
-          {display}
-          {console.log(display.id)}
-        </div>
+					
+				</div>
 
-        <div className="NewMessage">
-          <Input placeholder="Enter Message" name="message" onChange={this.handleChange} value={this.state.message} />
-          <Button
-            component="button"
-            variant="contained"
-            color="primary"
-            onClick={this.newMessageHandler}
-          >
-            {" "}
-            Send Message{" "}
-          </Button>
+				<div className="NewMessage">
+					<Input placeholder="Type Message Here" name="message" onChange={this.handleChange} value={this.state.message} />
+					<Button component="button" variant="contained" color="primary" onClick={this.newMessageHandler}>
+						{" "}
+						Send Message{" "}
+					</Button>
 
-          {/* <Button onClick={this.fetchMessages}>Show Messages</Button> */}
-        </div>
-      </div>
-    );
-  }
+					{/* <Button onClick={this.fetchMessages}>Show Messages</Button> */}
+				</div>
+			</div>
+		);
+	}
 }
 
 export default withAsyncAction("profile", "all")(Messages);
