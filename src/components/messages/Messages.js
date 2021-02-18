@@ -121,7 +121,20 @@ class Messages extends React.Component {
             Send Message{" "}
           </Button>
 
-          {/* <Button onClick={this.fetchMessages}>Show Messages</Button> */}
+          <details>
+            <summary>Give us feedback</summary>
+            <form>
+              <fieldset>
+                <legend>Your feedback helps us to improve our product!</legend>
+                <input type="text" placeholder="First Name" />
+                <input type="text" placeholder="Last Name" />
+                <textarea name="" id="" cols="34" rows="6"></textarea>
+                <Button component="button" variant="contained" color="primary">
+                  Submit
+                </Button>
+              </fieldset>
+            </form>
+          </details>
         </div>
       </div>
     );
