@@ -22,6 +22,10 @@ class Messages extends React.Component {
 		};
 		
 	}
+	
+	componentDidMount() {
+        	this.fetchMessages();
+	}
 
 	fetchMessages = () => {
 		this.props.getMessage(this.props.username).then((res) => {
@@ -101,7 +105,7 @@ class Messages extends React.Component {
 				</div>
 
 				<div className="NewMessage">
-					<input name="message" onChange={this.handleChange} value={this.state.message} />
+					<Input placeholder="Type Message Here" name="message" onChange={this.handleChange} value={this.state.message} />
 					<Button component="button" variant="contained" color="primary" onClick={this.newMessageHandler}>
 						{" "}
 						Send Message{" "}
